@@ -16,6 +16,9 @@ int s[10], sensor, sum;
 float avg;
 
 byte sf, sl, sr;
+byte spl = 255, spr = 255;
+
+void c_text(String text, int y, int size = 2);
 
 void setup() {
   Serial.begin(115200);
@@ -30,12 +33,24 @@ void setup() {
   display.invertDisplay(false);
   default_screen();
   delay(1000);
-  // motor(255, 255);
 }
 
 void loop() {
   byte r = push(mb);
-  if (r == 1) menu();
+  if (r == 1) {
+    r = menu();
+    if (r == 5) analog_display();
+    if (r == 6) sonar_display();
+    if (r == 7) {
+      display.clearDisplay();
+      c_text("STARTING", 24);
+      display.display();
+      delay(1000);
+      motor(spl, spr);
+      delay(3000);
+      motor(0, 0);
+    }
+  }
   reading();
   drawBars();
 }
