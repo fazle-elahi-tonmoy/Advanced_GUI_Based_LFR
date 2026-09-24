@@ -3,7 +3,7 @@ void text(String t, byte x, byte y) {
   display.print(t);
 }
 
-void c_text(String text, int y, int size = 2) {
+void c_text(String text, int y = 24, int size = 2) {
   display.setTextSize(size);
   int16_t x1, y1;
   uint16_t w, h;
