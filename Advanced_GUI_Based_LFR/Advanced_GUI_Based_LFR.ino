@@ -38,6 +38,7 @@ void c_text(String text, int y = 24, int size = 2);
 void setup() {
   memory_load();
   PID_load();
+  path_load();
   Serial.begin(115200);
   pinMode(ub, INPUT_PULLUP);
   pinMode(mb, INPUT_PULLUP);
