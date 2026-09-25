@@ -36,6 +36,9 @@ void PID_save() {
 }
 
 void path_load() {
-  for (byte i = 0; i < 50; i++)
+  for (byte i = 0; i < 50; i++) {
     path[i] = EEPROM.read(i + memory);
+    Serial.print(String(path[i] + " "));
+  }
+  Serial.println();
 }
