@@ -5,6 +5,7 @@ void text(String t, byte x, byte y) {
 
 void c_text(String text, int y = 24, int size = 2) {
   display.setTextSize(size);
+  display.setTextColor(1);
   int16_t x1, y1;
   uint16_t w, h;
   display.getTextBounds(text, 0, y, &x1, &y1, &w, &h);

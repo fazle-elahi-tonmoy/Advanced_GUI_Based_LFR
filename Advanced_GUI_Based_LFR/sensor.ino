@@ -71,7 +71,7 @@ void cal() {
 
   for (byte i = 0; i < 10; i++) {
     EEPROM.update(i, (minimum[i] + 50) / 4);
-    EEPROM.update(i + 10, (maximum[i] - 50) / 4);
+    EEPROM.update(i + 10, (maximum[i]) / 4);
   }
 
   display.clearDisplay();
