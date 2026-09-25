@@ -70,11 +70,14 @@ void loop() {
       delay(3000);
       motor(0, 0);
     }
-  }
-  else if(r == 2) line_follow();
+    if (r == 7) motor_turn('l');
+  } else if (r == 2) line_follow();
 
   r = push(ub);
   if (r) counter_adjust();
+
+  r = push(db);
+  if (r) path_panel();
 
   reading();
   drawBars();

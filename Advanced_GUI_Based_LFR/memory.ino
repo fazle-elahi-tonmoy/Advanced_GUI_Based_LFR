@@ -34,3 +34,8 @@ void PID_save() {
   EEPROM.update(41, I);
   EEPROM.update(42, D / 10);
 }
+
+void path_load() {
+  for (byte i = 0; i < 50; i++)
+    path[i] = EEPROM.read(i + memory);
+}
