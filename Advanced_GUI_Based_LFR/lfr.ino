@@ -17,8 +17,8 @@ void line_follow() {
       cross = turn = 's';
     }
 
-    // if (b_sum == 0) {
-    // }
+    if (b_sum == 0) {
+    }
 
     // if (bin_s[9] && !bin_s[0] && b_sum > 3) {
     //   turn = 'l';
