@@ -17,7 +17,7 @@ String path_list(byte a) {
 
 void path_panel() {
   display.setTextSize(1);
-  byte base = 1, peak = 8, temp = 0, ind = 1, limit = 25;
+  byte base = 1, peak = 8, temp = 0, ind = 1, limit = 50;
   bool lpu = 0, lpb = 0;
   while (1) {
     if (temp != ind) {
