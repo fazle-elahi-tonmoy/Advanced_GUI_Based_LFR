@@ -4,7 +4,7 @@ void reading() {
   b_sum = 0;
   for (byte i = 0; i < 10; i++) {
     s[i] = analogRead(IR_pins[i]);
-    s[i] = map(s[i], minimum[i], maximum[i], 0, 9);
+    s[i] = map(s[i], minimum[i] + 100, maximum[i] - 100, 0, 9);
     s[i] = constrain(s[i], 0, 9);
     bin_s[i] = (s[i] > 4);
     sensor += s[i] * weight[i];
@@ -70,8 +70,8 @@ void cal() {
   delay(1000);
 
   for (byte i = 0; i < 10; i++) {
-    EEPROM.update(i, (minimum[i] + 50) / 4);
-    EEPROM.update(i + 10, (maximum[i]) / 4);
+    EEPROM.update(i, minimum[i] / 4);
+    EEPROM.update(i + 10, maximum[i] / 4);
   }
 
   display.clearDisplay();
