@@ -25,7 +25,7 @@ void path_panel() {
       display.clearDisplay();
       for (byte i = 0; i < 8; i++) {
         (i == ind - base) ? display.setTextColor(0, 1) : display.setTextColor(1);
-        text(String(i + base) + ") " + path_list(path[i + base - 1]), 0, i);
+        text(String(i + base) + ") " + path_list(path[i + base - 1]), 0, i * 8);
       }
       display.display();
     }
