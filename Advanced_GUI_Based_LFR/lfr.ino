@@ -29,8 +29,8 @@ void line_follow() {
     //   }
     // }
 
-    // if (bin_s[9] && bin_s[0]) {
-    // }
+    if (bin_s[9] && bin_s[0]) {
+    }
 
 
     errorP = (float)avg + target;
