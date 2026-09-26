@@ -33,7 +33,7 @@ void line_follow() {
 
     if (b_sum == 0 && turn != 's') {
       (turn == 'l') ? motor(-turn_speed, turn_speed) : motor(turn_speed, -turn_speed);
-      while (b_sum == 0) reading(); // Spin until line is found again
+      while (b_sum == 0) reading();
       motor(0, 0);
       turn = 's'; 
       continue;
