@@ -14,12 +14,3 @@ void motor_turn(char t) {
   delay(turn_brake);
   motor(0, 0);
 }
-
-void brake() {
-  if (brake_time) {
-    motor(-255, -255);
-    delay(brake_time);
-    motor(0, 0);
-    delay(hold_delay);
-  }
-}

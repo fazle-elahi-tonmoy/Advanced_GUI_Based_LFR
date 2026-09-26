@@ -65,14 +65,15 @@ start:
         cross = turn = 's';
       }
 
-      errorP = (float)avg + target;
-      PID = (float)P * errorP + D * (errorP - errorL);
-      motor(spl + PID, spr - PID);
-      errorL = errorP;
+      cross = 's';
+      turn = 's';
+      continue; 
     }
 
-    else {
-      if (!bin_s[9] && bin_s[0]) {
+    if (b_sum > 4) {
+      if (bin_s[8] != 0 && bin_s[1] == 0) {
+        turn = 'l';
+      } else if (bin_s[8] == 0 && bin_s[1] != 0) {
         turn = 'r';
         if (path[counter] == 3 || path[counter] == 2 || (cont == 1 && side == 'r')) {
           while (!bin_s[9] && bin_s[0]) reading();
@@ -89,6 +90,7 @@ start:
           }
         }
       }
+    }
 
       else if (!bin_s[0] && bin_s[9]) {
         turn = 'l';
