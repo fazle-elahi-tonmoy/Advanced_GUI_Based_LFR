@@ -9,16 +9,17 @@ String adjustment_list(byte a) {
   else if (a == 8) return "U Turn Timer  ";
   else if (a == 9) return "Stop Timer    ";
   else if (a == 10) return "Inv. Timer   ";
-  else if (a == 11) return "Obj Dist.    ";
-  else if (a == 12) return "Wall Dist.   ";
-  else if (a == 13) return "Wall Mid     ";
-  else if (a == 14) return "Wall Prop.   ";
-  else if (a == 15) return "Hold Delay   ";
+  else if (a == 11) return "Cncl Timer   ";
+  else if (a == 12) return "Obj Dist.    ";
+  else if (a == 13) return "Wall Dist.   ";
+  else if (a == 14) return "Wall Mid     ";
+  else if (a == 15) return "Wall Prop.   ";
+  else if (a == 16) return "Hold Delay   ";
 }
 
 void adjustment_panel() {
   display.setTextSize(1);
-  byte base = 1, peak = 8, temp = 0, ind = 1, limit = 15;
+  byte base = 1, peak = 8, temp = 0, ind = 1, limit = 16;
   bool lpu = 0, lpb = 0;
   int value;
   while (1) {
@@ -27,7 +28,7 @@ void adjustment_panel() {
       display.clearDisplay();
       for (byte i = 0; i < 8; i++) {
         (i == ind - base) ? display.setTextColor(0, 1) : display.setTextColor(1);
-        if (i + base >= 6 && i + base <= 10) value = EEPROM.read(i + base + 20) * 10;
+        if (i + base >= 6 && i + base <= 11) value = EEPROM.read(i + base + 20) * 10;
         else if (i + base == 2) value = EEPROM.read(i + base + 20) * 2 - 250;
         else value = EEPROM.read(i + base + 20);
         text(String(i + base) + ") " + adjustment_list(i + base) + String(value), 0, i * 8);
@@ -81,11 +82,11 @@ void set_adjust(int indicator) {
   display.clearDisplay();
   int value;
   bool lpu = 0, lpb = 0;
-  if (indicator >= 6 && indicator <= 10) value = EEPROM.read(indicator + 20) * 10;
+  if (indicator >= 6 && indicator <= 11) value = EEPROM.read(indicator + 20) * 10;
   else value = EEPROM.read(indicator + 20);
 
   int temp = -1, limit = 255;
-  if (indicator >= 6 && indicator <= 10) limit = 2500;
+  if (indicator >= 6 && indicator <= 11) limit = 2500;
 
   while (1) {
     if (temp != value) {
@@ -99,21 +100,21 @@ void set_adjust(int indicator) {
     byte p = press(ub, lpu);
     if (p) {
       if (p == 2) lpu = 1;
-      (indicator >= 6 && indicator <= 10) ? value += 10 : value++;
+      (indicator >= 6 && indicator <= 11) ? value += 10 : value++;
       if (value > limit) value = limit;
     } else lpu = 0;
 
     p = press(db, lpb);
     if (p) {
       if (p == 2) lpb = 1;
-      (indicator >= 6 && indicator <= 10) ? value -= 10 : value--;
+      (indicator >= 6 && indicator <= 11) ? value -= 10 : value--;
       if (value < 0) value = 0;
     } else lpb = 0;
 
     byte r = push(mb);
     if (r) {
       if (r == 1) {
-        (indicator >= 6 && indicator <= 10) ? EEPROM.update(20 + indicator, value / 10)
+        (indicator >= 6 && indicator <= 11) ? EEPROM.update(20 + indicator, value / 10)
                                             : EEPROM.update(20 + indicator, value);
         delay(10);
         display.setTextSize(1);
