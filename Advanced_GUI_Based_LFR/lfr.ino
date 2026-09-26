@@ -39,13 +39,14 @@ void line_follow() {
     }
 
     else {
-      if (!bin_s[9] && bin_s[0]) {
-        turn = 'r';
-      }
+    }
 
-      else if (!bin_s[0] && bin_s[9]) {
-        turn = 'l';
-      }
+    if (!bin_s[9] && bin_s[0]) {
+      turn = 'r';
+    }
+
+    else if (!bin_s[0] && bin_s[9]) {
+      turn = 'l';
     }
   }
 }
