@@ -17,7 +17,6 @@ void line_follow() {
       (cross == 'l') ? motor(-turn_speed, turn_speed) : motor(turn_speed, -turn_speed);
       while (bin_s[5] != 0 && bin_s[6] != 0) reading();
       while (bin_s[5] == 0 && bin_s[6] == 0) reading(); 
-
       cross = 's';
       turn = 's';
       continue; 
@@ -34,12 +33,13 @@ void line_follow() {
     if (b_sum == 0 && turn != 's') {
       (turn == 'l') ? motor(-turn_speed, turn_speed) : motor(turn_speed, -turn_speed);
       while (b_sum == 0) reading();
-      motor(0, 0);
+      // motor(0, 0);
       turn = 's'; 
       continue;
     }
 
-    if (b_sum < 4 && b_sum > 0) {
+    // if (b_sum < 4 && b_sum > 0) {    
+      if (b_sum == 1 || b_sum == 2 {
       errorP = (float)avg + target;
       PID = (float)P * errorP + D * (errorP - errorL);
       motor(spl + PID, spr - PID);
