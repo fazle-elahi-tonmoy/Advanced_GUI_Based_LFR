@@ -10,11 +10,9 @@ void reading() {
     sensor += s[i] * weight[i];
     sum += s[i];
     b_sum += bin_s[i];
-    Serial.print(String(bin_s[i]) + " ");
   }
   if (sum) avg = (float)sensor / sum;
   // Serial.print(avg);
-  Serial.println("  " + String(b_sum));
 }
 
 void sonarRead() {
