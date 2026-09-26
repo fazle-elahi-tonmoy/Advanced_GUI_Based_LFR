@@ -15,6 +15,7 @@ void memory_load() {
   u_turn_timer = EEPROM.read(28) * 10;
   stop_timer = EEPROM.read(29) * 10;
   i_timer = EEPROM.read(30) * 10;
+  cancel_timer = EEPROM.read(31) * 10;
   obstacle_distance = EEPROM.read(31);
   wall_distance = EEPROM.read(32);
   wall_mid = EEPROM.read(33);

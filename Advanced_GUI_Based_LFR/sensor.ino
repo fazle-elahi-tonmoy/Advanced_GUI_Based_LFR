@@ -6,15 +6,15 @@ void reading() {
     s[i] = analogRead(IR_pins[i]);
     s[i] = map(s[i], minimum[i] + 100, maximum[i] - 100, 0, 9);
     s[i] = constrain(s[i], 0, 9);
+    if (i_mode) s[i] = 9 - s[i];
     bin_s[i] = (s[i] > 4);
+    bin_s[i] ^= i_mode;
     sensor += s[i] * weight[i];
     sum += s[i];
     b_sum += bin_s[i];
-    // Serial.print(String(s[i]) + " ");
   }
   if (sum) avg = (float)sensor / sum;
   // Serial.print(avg);
-  // Serial.println("  " + String(b_sum));
 }
 
 void sonarRead() {
