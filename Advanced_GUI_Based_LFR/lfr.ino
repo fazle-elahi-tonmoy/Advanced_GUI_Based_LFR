@@ -3,39 +3,47 @@ void line_follow() {
   c_text("LFR");
   display.display();
   errorP = errorL = 0;
+  
   while (1) {
     reading();
-    if (b_sum == 10) {
-      motor(0, 0);
-      continue;
+
+    if (b_sum > 6) {
+      if (bin_s[1] && bin_s[8]) {
+        cross = 'l'; 
+      }
     }
 
     if (cross != 's') {
       (cross == 'l') ? motor(-turn_speed, turn_speed) : motor(turn_speed, -turn_speed);
-      while (bin_s[2] || bin_s[3] || bin_s[4] || bin_s[5] || bin_s[6] || bin_s[7]) reading();
-      while (!bin_s[4] && !bin_s[5]) reading();
-      cross = turn = 's';
+      while (bin_s[5] != 0 && bin_s[6] != 0) reading();
+      while (bin_s[5] == 0 && bin_s[6] == 0) reading(); 
+
+      cross = 's';
+      turn = 's';
+      continue; 
     }
 
-    if (b_sum == 0) {
+    if (b_sum > 4) {
+      if (bin_s[8] != 0 && bin_s[1] == 0) {
+        turn = 'l';
+      } else if (bin_s[8] == 0 && bin_s[1] != 0) {
+        turn = 'r';
+      }
     }
 
-    // if (bin_s[9] && !bin_s[0] && b_sum > 3) {
-    //   turn = 'l';
-    //   if (side == 'l') {
-    //     while (bin_s[9] && !bin_s[0]) reading();
-    //     delay(node_delay);
-    //     if (!bin_s[9] && b_sum > 0) cross = 'l';
-    //   }
-    // }
-
-    if (bin_s[9] && bin_s[0]) {
+    if (b_sum == 0 && turn != 's') {
+      (turn == 'l') ? motor(-turn_speed, turn_speed) : motor(turn_speed, -turn_speed);
+      while (b_sum == 0) reading(); // Spin until line is found again
+      motor(0, 0);
+      turn = 's'; 
+      continue;
     }
 
-
-    errorP = (float)avg + target;
-    PID = (float)P * errorP + D * (errorP - errorL);
-    motor(spl + PID, spr - PID);
-    errorL = errorP;
+    if (b_sum < 4 && b_sum > 0) {
+      errorP = (float)avg + target;
+      PID = (float)P * errorP + D * (errorP - errorL);
+      motor(spl + PID, spr - PID);
+      errorL = errorP;
+    }
   }
 }
