@@ -25,8 +25,8 @@ start:
       }
 
       else {
-        // if (path[counter] == 9)
-        // if (sonarl_read(0) || sonarr_read(0)) wall_follow();
+        if (path[counter] == 9)
+          if (sonarl_read(0) || sonarr_read(0)) wall_follow();
         m2 = millis();
         while (!b_sum) {
           reading();
@@ -109,7 +109,7 @@ start:
       }
 
       else if (bin_s[0] && bin_s[9]) {
-        // if (path[counter] == 11) i_detection();
+        if (path[counter] == 11) i_detection();
         if (b_sum == 10) {
           reading();
           if (millis() - m2 > stop_timer) {
