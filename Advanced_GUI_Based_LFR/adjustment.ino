@@ -13,11 +13,12 @@ String adjustment_list(byte a) {
   else if (a == 12) return "Wall Dist.   ";
   else if (a == 13) return "Wall Mid     ";
   else if (a == 14) return "Wall Prop.   ";
+  else if (a == 15) return "Hold Delay   ";
 }
 
 void adjustment_panel() {
   display.setTextSize(1);
-  byte base = 1, peak = 8, temp = 0, ind = 1, limit = 14;
+  byte base = 1, peak = 8, temp = 0, ind = 1, limit = 15;
   bool lpu = 0, lpb = 0;
   int value;
   while (1) {

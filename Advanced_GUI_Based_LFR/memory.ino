@@ -19,6 +19,7 @@ void memory_load() {
   wall_distance = EEPROM.read(32);
   wall_mid = EEPROM.read(33);
   wallp = EEPROM.read(34);
+  hold_delay = EEPROM.read(35);
   (error > 0) ? spr = speed - error : spr = speed;
   (error < 0) ? spl = speed + error : spl = speed;
 }

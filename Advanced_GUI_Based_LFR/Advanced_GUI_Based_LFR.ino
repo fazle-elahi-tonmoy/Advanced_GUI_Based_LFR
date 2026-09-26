@@ -19,7 +19,7 @@ int minimum[10], maximum[10];
 float avg, errorP, errorL, target = 0, PID;
 
 int speed, error, spl, spr, turn_speed;
-int brake_time, turn_brake, turn90_delay, node_delay, stop_timer, u_turn_timer, i_timer;
+int brake_time, turn_brake, turn90_delay, node_delay, stop_timer, u_turn_timer, i_timer, hold_delay;
 int obstacle_distance, wall_distance, wall_mid, wallp, wall_limit = 25;
 int P, I, D;
 char side = 'l', turn = 's', cross = 's';
